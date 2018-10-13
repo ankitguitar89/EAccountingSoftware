@@ -12,6 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/validate.js"></script>
 </head>
 <style>
 .container {
@@ -31,75 +32,20 @@
 <body>
 
 
-<!-- 
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<form name="myForm" action="Company.jsp"
+onsubmit="return validateForm()" method="post">
+		<h3>Login</h3>
+	<p id="validation" style="color: white"></p>
+	<input type="text" id="uname" placeholder="Enter Username">
+	<br>
+	<input type="password" id="password" placeholder="Enter Password">
+	<br>
+	<input type="button" id="resetBtn" value="Reset" onclick="reset()">
+	<input type="submit" id="loginBtn" value="Login">
+	</form>
 
-		<h3>Accounting Application Login</h3>
-		<!-- Indicators -->
-<!--		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
-		</ol>
 
-		<!-- Wrapper for slides -->
-<!--		<div class="carousel-inner">
-			<div class="item active">
-				<img src="Images/POS.jpg" alt="POS">
-			</div>
-
-			<div class="item">
-				<img src="Images/clothing.jpg" alt="Store">
-			</div>
-
-			<div class="item">
-				<img src="Images/Inventory2'.jpg" alt="Inventory Management">
-			</div>
-		</div>
-
-		<!-- Left and right controls -->
-<!--		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span> <span
-			class="sr-only">Previous</span>
-		</a>
-		<!--  a class="right carousel-control" href="#myCarousel"
-			data-slide="next"> <span
-			class="glyphicon glyphicon-chevron-right"></span> <span
-			class="sr-only">Next</span>
-		</a-->
-
-			
-				<h3>Login</h3>
-				<p id="validation" style="color: white"></p>
-				<input type="text" id="uname" placeholder="Enter Username">
-				<br> 
-				<input type="password" id="password"
-					placeholder="Enter Password"> 
-					<br> 
-					<input
-					type="button" id="resetBtn" value="Reset" onclick="reset()">
-				<input type="button" id="loginBtn" value="Login" onclick="login()">
-			
-
-<!--	</div-->
+	<!--	</div-->
 </body>
-<script>
-	function reset() {
-		var str1 = document.getElementById("password").value;
-		document.getElementById("uname").value = "";
-		document.getElementById("password").value = "";
-		document.getElementById("validation").innerHTML = "";
-	}
 
-	function login() {
-		var str1 = document.getElementById("uname").value;
-		var str2 = document.getElementById("password").value;
-		out.print(str1);
-		if (str1 == "admin" && str2 == "admin") {
-			location.href("Company.jsp"	);
-		} else
-			document.getElementById("validation").innerHTML = "Incorrect username or password entered! Please try again!";
-
-	}
-</script>
 </html>
