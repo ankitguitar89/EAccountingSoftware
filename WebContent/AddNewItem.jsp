@@ -89,7 +89,6 @@ form {
 						<input type="text" onclick="myFunction()" class="dropbtn"
 							value="Select Unit2">
 						<div id="myDropdown" class="dropdown-content">
-							<a>Box</a> <a>Pcs</a>
 						</div>
 					</div>
 				</div>
