@@ -99,7 +99,7 @@ tr:hover {
 	<%@include file="LeftNavMenu.html"%>
 	
 	<div class="item-page">
-	<h4>All Contacts</h4>
+	<h4>All Staff</h4>
 
 	
 		<input type="text" id="myInput" onkeyup="myFunction()"
@@ -120,13 +120,15 @@ tr:hover {
 									for="checkbox1"></label>
 							</div>
 						</th>
-						<th>STAFF NAME</th>
-						<th>AGE</th>
-						<th>EXPERIENCE</th>
+						<th>FIRST NAME</th>
+						<th>LAST NAME</th>
+						<th>GENDER</th>
+						<th>DOB</th>
 						<th>PRIMARY PHONE#</th>
 						<th>ALTERNATE PHONE#</th>
 						<th>EMAIL</th>
 						<th>JOINING DATE</th>
+						<th>ADDRESS</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -135,7 +137,7 @@ tr:hover {
 						try {
 							connection = DriverManager.getConnection(connectionUrl + database, userid, password);
 							statement = connection.createStatement();
-							String sql = "select CONCAT(firstName,\" \", lastName) name, company,email, primaryPhone,alternatePhone,receivable from contact";
+							String sql = "select firstName, lastName, gender,dob , primarycontact,alternatecontact,email,joiningdate,address from staff";
 							resultSet = statement.executeQuery(sql);
 							while (resultSet.next()) {
 					%>
@@ -146,12 +148,15 @@ tr:hover {
 									for="checkbox1"></label>
 							</div>
 						</td>					
-						<td><%=resultSet.getString("name")%></td>
-						<td><%=resultSet.getString("company")%></td>
+						<td><%=resultSet.getString("firstname")%></td>
+						<td><%=resultSet.getString("lastname")%></td>
+						<td><%=resultSet.getString("gender")%></td>											
+						<td><%=resultSet.getString("dob")%></td>
+						<td><%=resultSet.getString("primarycontact")%></td>
+						<td><%=resultSet.getString("alternatecontact")%></td>
 						<td><%=resultSet.getString("email")%></td>
-						<td><%=resultSet.getString("primaryPhone")%></td>
-						<td><%=resultSet.getString("alternatePhone")%></td>
-						<td><%=resultSet.getString("receivable")%></td>
+						<td><%=resultSet.getString("joiningdate")%></td>
+						<td><%=resultSet.getString("address")%></td>
 
 					</tr>
 					<%
