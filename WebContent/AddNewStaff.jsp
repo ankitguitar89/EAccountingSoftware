@@ -24,7 +24,7 @@ form {
 	<div class="item-page">
 		<h4>Add New Staff</h4>
 		<hr style="" />
-		<form method="post" action="processContact.jsp">
+		<form method="post" action="addStaff">
 
 			<div class="form-group row">
 				<label for="firstName" class="col-sm-1 col-form-label">First
@@ -43,7 +43,7 @@ form {
 			<div class="form-group row">
 				<label for="Gender" class="col-sm-1 col-form-label">Gender</label>
 				<div class="col-sm-2">
-					<select class="form-control" name="sex">
+					<select class="form-control" name="gender">
 						<option value="male">MALE</option>
 						<option value="female">FEMALE</option>
 						<option value="na">NA</option>
@@ -94,10 +94,8 @@ form {
 
 			<div class="form-group row">
 				<div class="col-sm-2">
-					<a href="Staff.jsp"><input type="submit" value="Submit" class="btn btn-primary"></a>
-					
-<!--Insert Into create table staff(firstname , lastname ,gender , dob , primarycontact , alternatecontact , email , joiningdate , address ,creationdate)-->
-					
+					<input type="submit" value="Submit" class="btn btn-primary">
+										
 					<a href="Staff.jsp"><input type="button" value="Cancel"
 						class="btn btn-primary"></a>
 				</div>
