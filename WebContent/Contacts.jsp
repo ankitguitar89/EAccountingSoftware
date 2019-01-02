@@ -120,12 +120,12 @@ tr:hover {
 									for="checkbox1"></label>
 							</div>
 						</th>
-						<th>NAME</th>
-						<th>COMPANY</th>
+						<th>CONTACT PERSON</th>
+						<th>COMPANY NAME</th>
 						<th>EMAIL</th>
 						<th>PRIMARY PHONE#</th>
 						<th>ALTERNATE PHONE#</th>
-						<th>RECEIVABLES</th>
+						<th>ADDRESS</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -134,7 +134,7 @@ tr:hover {
 						try {
 							connection = DriverManager.getConnection(connectionUrl + database, userid, password);
 							statement = connection.createStatement();
-							String sql = "select CONCAT(firstName,\" \", lastName) name, company,email, primaryPhone,alternatePhone,receivable from contact";
+							String sql = "select CONCAT(firstName,\" \", lastName) name, company,email, primaryPhone,alternatePhone,address from contact";
 							resultSet = statement.executeQuery(sql);
 							while (resultSet.next()) {
 					%>
@@ -150,7 +150,7 @@ tr:hover {
 						<td><%=resultSet.getString("email")%></td>
 						<td><%=resultSet.getString("primaryPhone")%></td>
 						<td><%=resultSet.getString("alternatePhone")%></td>
-						<td><%=resultSet.getString("receivable")%></td>
+						<td><%=resultSet.getString("address")%></td>
 
 					</tr>
 					<%

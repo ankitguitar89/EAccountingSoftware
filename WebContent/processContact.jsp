@@ -10,7 +10,7 @@
 	String primaryPhone = request.getParameter("primaryPhone#");
 	String alternatePhone = request.getParameter("alternatePhone#");
 	String email = request.getParameter("email");
-	String receivable = request.getParameter("receivable");
+	String address = request.getParameter("address");
 
 	try {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -18,13 +18,13 @@
 		Statement st = conn.createStatement();
 
 		int i = st.executeUpdate(
-				"insert into contact (firstName,lastName,company,primaryPhone,alternatePhone,receivable,createdAt,email)values('" + firstName
+				"insert into contact (firstName,lastName,company,primaryPhone,alternatePhone,address,createdAt,email)values('" + firstName
 						+ "','" + lastName + "','" + company + "','" + primaryPhone + "','" + alternatePhone + "','"
-						+ receivable + "',"+"CURRENT_TIMESTAMP" + ",'"+ email + "');");
+						+ address + "',"+"CURRENT_TIMESTAMP" + ",'"+ email + "');");
 		out.println("Data is successfully inserted!");
-		System.out.println(	"insert into contact (firstName,lastName,company,primaryPhone,alternatePhone,receivable,createdAt,email)values('" + firstName
+		System.out.println(	"insert into contact (firstName,lastName,company,primaryPhone,alternatePhone,address,createdAt,email)values('" + firstName
 				+ "','" + lastName + "','" + company + "','" + primaryPhone + "','" + alternatePhone + "','"
-				+ receivable + "',"+"CURRENT_TIMESTAMP" + ",'"+ email + "');");
+				+ address + "',"+"CURRENT_TIMESTAMP" + ",'"+ email + "');");
 	} catch (Exception e) {
 		System.out.print(e);
 		e.printStackTrace();

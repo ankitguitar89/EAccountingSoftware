@@ -64,16 +64,16 @@ form {
 			</div>
 
 			<div class="form-group row">
-				<label for="receivable" class="col-sm-1 col-form-label">Receivable</label>
+				<label for="address" class="col-sm-1 col-form-label">Address</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="receivable">
+					<input type="text" class="form-control" name="address">
 				</div>
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-2">
-					<input type="submit" value="Submit" class="btn btn-primary">
+					<input type="submit" value="Submit" class="btn btn-success">
 					<a href="Contacts.jsp"><input type="button" value="Cancel"
-						class="btn btn-primary"></a>
+						class="btn"></a>
 				</div>
 			</div>
 		</form>
