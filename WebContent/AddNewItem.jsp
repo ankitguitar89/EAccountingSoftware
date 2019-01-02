@@ -7,7 +7,10 @@
 <title>Add New Item</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
 <style>
 .item-page {
 	margin-left: 160px;
@@ -25,101 +28,159 @@ form {
 	<div class="item-page">
 		<h4>Add New Item</h4>
 		<hr style="" />
-		<form method="post" action="process.jsp">
-
-
-			<div class="form-group row">
-				<label for="brand" class="col-sm-1 col-form-label">Brand</label>
+		<form method="post" action="addItem">
+			<div class="row">
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="brand">
 
-					<div class="dropdown">
-						<input type="text" onclick="myFunction()" class="dropbtn"
-							value="Select Brand">
-						<div id="myDropdown" class="dropdown-content">
-							<input type="text" placeholder="Search.." id="myInput"
-								onkeyup="filterFunction()"> <a href="AddNewBrand.jsp">+
-								Add new brand</a>
-						</div>
-					</div>
-
-
+					<label for="productCode">Product Code</label>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" name="productCode" /> <i
+						class="fas fa-caret-down"></i>
 				</div>
 			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="company">Company</label>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" name="company" /> <i class="fas fa-caret-down"></i>
+				</div>
+			</div>
+<br>
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="brand">Brand</label>
+				</div>
 
-			<div class="form-group row">
-				<label for="itemName" class="col-sm-1 col-form-label">Name</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="itemName">
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="=productColor" class="col-sm-1 col-form-label">Color</label>
+			<br>
+			<div class="row">
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="productColor">
+					<label for="brand">Category</label>
 				</div>
-			</div>
-			<div class="form-group row">
-				<label for="size" class="col-sm-1 col-form-label">Size</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="size">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="unit1" class="col-sm-1 col-form-label">Unit1</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="unit1">
 
-					<div class="dropdown">
-						<input type="text" onclick="myFunction()" class="dropbtn"
-							value="Select Unit1">
-						<div id="myDropdown" class="dropdown-content">
-							<a>Box</a> <a>Pcs</a>
-						</div>
-					</div>
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
+<br>
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="brand">Shape</label>
+				</div>
 
-			<div class="form-group row">
-				<label for="unit2" class="col-sm-1 col-form-label">Unit2</label>
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
+				</div>
+			</div>
+<br>
+			<div class="row">
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="unit2">
+					<label for="brand">Alias Name</label>
+				</div>
 
-					<div class="dropdown">
-						<input type="text" onclick="myFunction()" class="dropbtn"
-							value="Select Unit2">
-						<div id="myDropdown" class="dropdown-content">
-						</div>
-					</div>
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
+<br>
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="brand">Size</label>
+				</div>
 
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
+				</div>
+			</div>
+<br>
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="brand">Color</label>
+				</div>
 
-			<div class="form-group row">
-				<label for="unit" class="col-sm-1 col-form-label">Unit</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="unit">
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="rate" class="col-sm-1 col-form-label">Rate</label>
+<br>
+			<div class="row">
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="rate">
+					<label for="brand">Current Stock</label>
+				</div>
+
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="desc" class="col-sm-1 col-form-label">Description</label>
+<br>
+			<div class="row">
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="desc">
+					<label for="brand">MRP</label>
+				</div>
+
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
-			<div class="form-group row">
+<br>
+			<div class="row">
 				<div class="col-sm-2">
-					<input type="submit" value="Submit" class="btn btn-primary">
-					<a href="Items.jsp"><input type="button" value="Cancel"
-						class="btn btn-primary"></a>
+					<label for="brand">Purchase Price</label>
+				</div>
+
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
+<br>
+			
+						<div class="row">
+				<div class="col-sm-2">
+					<label for="brand">R-Retail Rate</label>
+				</div>
+
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
+				</div>
+			</div>
+			<br>
+						<div class="row">
+				<div class="col-sm-2">
+					<label for="brand">D-Distributor Rate</label>
+				</div>
+
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
+				</div>
+			</div>
+			<br>
+						<div class="row">
+				<div class="col-sm-2">
+					<label for="brand">GST</label>
+				</div>
+
+				<div class="col-sm-4">
+					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
+				</div>
+			</div>
+			<br>
+			
+			
+			
+			
+			
+				<div class="container">
+					<button type="button" class="btn btn-success">Save</button>
+					<a href="Items.jsp">
+						<button type="button" class="btn">Cancel</button>
+					</a>
+				</div>
 		</form>
 	</div>
 </body>
