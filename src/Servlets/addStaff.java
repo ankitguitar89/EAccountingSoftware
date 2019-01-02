@@ -60,8 +60,6 @@ public class addStaff extends HttpServlet {
 			System.out.print(e);
 			e.printStackTrace();
 		}
-	
-
 	}
 
 	/**

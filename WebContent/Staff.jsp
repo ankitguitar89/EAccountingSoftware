@@ -105,7 +105,7 @@ tr:hover {
 		<input type="text" id="myInput" onkeyup="myFunction()"
 			placeholder="Search for Staff.."> <a
 			href="AddNewStaff.jsp"><input type="button"
-			id="addNewContactBtn" value="Add New Staff" class="btn btn-primary">
+			id="addNewContactBtn" value="Add New Staff" class="btn btn-success">
 		</a>
 
 
@@ -129,6 +129,9 @@ tr:hover {
 						<th>EMAIL</th>
 						<th>JOINING DATE</th>
 						<th>ADDRESS</th>
+						<th>STATUS</th>
+						<th>LAST WORKING DATE</th>
+						<th>COMMENTS</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -137,7 +140,7 @@ tr:hover {
 						try {
 							connection = DriverManager.getConnection(connectionUrl + database, userid, password);
 							statement = connection.createStatement();
-							String sql = "select firstName, lastName, gender,dob , primarycontact,alternatecontact,email,joiningdate,address from staff";
+							String sql = "select firstName, lastName, gender,dob , primarycontact,alternatecontact,email,joiningdate,address,status,lwd,comments from staff";
 							resultSet = statement.executeQuery(sql);
 							while (resultSet.next()) {
 					%>
@@ -157,7 +160,9 @@ tr:hover {
 						<td><%=resultSet.getString("email")%></td>
 						<td><%=resultSet.getString("joiningdate")%></td>
 						<td><%=resultSet.getString("address")%></td>
-
+						<td><%=resultSet.getString("status")%></td>
+						<td><%=resultSet.getString("lwd")%></td>
+						<td><%=resultSet.getString("comments")%></td>
 					</tr>
 					<%
 						}

@@ -173,15 +173,17 @@ tr:hover {
 									for="checkbox1"></label>
 							</div>
 						</th>
-						<th>ITEM ID</th>
-						<th style="cursor: pointer;" onclick="sortTable(1)">ITEM</th>
+						<th>PRODUCT CODE</th>
+						<th style="cursor: pointer;" onclick="sortTable(1)">COMPANY</th>
 						<th style="cursor: pointer;" onclick="sortTable(2)">BRAND</th>
-						<th style="cursor: pointer;" onclick="sortTable(3)">COLOR</th>
-						<th style="cursor: pointer;" onclick="sortTable(4)">SIZE</th>
-						<th>UNIT</th>
+						<th style="cursor: pointer;" onclick="sortTable(3)">CATEGORY</th>
+						<th style="cursor: pointer;" onclick="sortTable(4)">SHAPE</th>
+						<th>ALIAS NAME</th>
+						<th>SIZE</th>
+						<th>COLOR</th>
+						<th>CURRENT STOCK</th>
+						<th>MRP</th>
 						<th>RATE</th>
-						<th>DESCRIPTION</th>
-						<th>In Stock</th>
 					</tr>
 				</thead>
 				<tbody>
