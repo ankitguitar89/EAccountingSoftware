@@ -27,44 +27,41 @@ form {
 		<form method="post" action="processContact.jsp">
 
 			<div class="form-group row">
-				<label for="firstName" class="col-sm-1 col-form-label">First Name</label>
+				<label for="firstName" class="col-sm-2 col-form-label">Primary Contact</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="firstName">
+					<input type="text" class="form-control" name="firstName" placeholder="First Name">
+				</div>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" name="lastName" placeholder="Last Name">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="lastName" class="col-sm-1 col-form-label">Last Name</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="lastName">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="company" class="col-sm-1 col-form-label">Company</label>
+				<label for="company" class="col-sm-2 col-form-label">Company Name</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="company">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="primaryPhone" class="col-sm-1 col-form-label">Primary Phone#</label>
+				<label for="primaryPhone" class="col-sm-2 col-form-label">Primary Phone#</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="primaryPhone">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="alternatePhone" class="col-sm-1 col-form-label">Alternate Phone#</label>
+				<label for="alternatePhone" class="col-sm-2 col-form-label">Alternate Phone#</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="alternatePhone">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="email" class="col-sm-1 col-form-label">Email</label>
+				<label for="email" class="col-sm-2 col-form-label">Email</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="email">
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label for="address" class="col-sm-1 col-form-label">Address</label>
+				<label for="address" class="col-sm-2 col-form-label">Address</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="address">
 				</div>
