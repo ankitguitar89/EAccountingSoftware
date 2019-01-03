@@ -126,6 +126,7 @@ tr:hover {
 						<th>PRIMARY PHONE#</th>
 						<th>ALTERNATE PHONE#</th>
 						<th>ADDRESS</th>
+						<th>PAYMENT TERMS</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -134,7 +135,7 @@ tr:hover {
 						try {
 							connection = DriverManager.getConnection(connectionUrl + database, userid, password);
 							statement = connection.createStatement();
-							String sql = "select CONCAT(firstName,\" \", lastName) name, company,email, primaryPhone,alternatePhone,address from contact";
+							String sql = "select CONCAT(firstName,\" \", lastName) name, company,email, primaryPhone,alternatePhone,address,paymentterms from contact";
 							resultSet = statement.executeQuery(sql);
 							while (resultSet.next()) {
 					%>
@@ -151,7 +152,7 @@ tr:hover {
 						<td><%=resultSet.getString("primaryPhone")%></td>
 						<td><%=resultSet.getString("alternatePhone")%></td>
 						<td><%=resultSet.getString("address")%></td>
-
+						<td><%=resultSet.getString("paymentterms")%></td>
 					</tr>
 					<%
 						}

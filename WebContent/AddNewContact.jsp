@@ -10,7 +10,7 @@
 
 <style>
 .item-page {
-	margin-left: 160px;
+	margin-left: 180px;
 }
 
 form {
@@ -27,45 +27,68 @@ form {
 		<form method="post" action="processContact.jsp">
 
 			<div class="form-group row">
-				<label for="firstName" class="col-sm-2 col-form-label">Primary Contact</label>
+				<label for="firstName" class="col-sm-2 col-form-label">Primary
+					Contact</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="firstName" placeholder="First Name">
+					<input type="text" class="form-control" name="firstName"
+						placeholder="First Name">
 				</div>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="lastName" placeholder="Last Name">
+					<input type="text" class="form-control" name="lastName"
+						placeholder="Last Name">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="company" class="col-sm-2 col-form-label">Company Name</label>
-				<div class="col-sm-2">
+				<label for="company" class="col-sm-2 col-form-label">Company
+					Name</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" name="company">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="primaryPhone" class="col-sm-2 col-form-label">Primary Phone#</label>
+				<label for="primaryPhone" class="col-sm-2 col-form-label">Phone#</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="primaryPhone">
+					<input type="text" class="form-control" name="primaryPhone" placeholder="Primary">
 				</div>
-			</div>
-			<div class="form-group row">
-				<label for="alternatePhone" class="col-sm-2 col-form-label">Alternate Phone#</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="alternatePhone">
+					<input type="text" class="form-control" name="alternatePhone" placeholder="Alternate">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="email" class="col-sm-2 col-form-label">Email</label>
-				<div class="col-sm-2">
+				<div class="col-sm-4">
 					<input type="text" class="form-control" name="email">
 				</div>
 			</div>
 
 			<div class="form-group row">
 				<label for="address" class="col-sm-2 col-form-label">Address</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="address">
+				<div class="col-sm-4">
+					<textarea class="form-control" rows="3" name="address"></textarea>
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for="paymentTerms" class="col-sm-2 col-form-label">Payment
+					Terms</label>
+				<div class="col-sm-2">
+					<select name="paymentTerms">
+						<option>Due on Receipt</option>
+						<option>Net 15</option>
+						<option>Net 30</option>
+						<option>Net 45</option>
+						<option>Net 60</option>
+						<option>Due end of the month</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
+				<div class="col-sm-4">
+					<textarea class="form-control" rows="5" name="remarks" /></textarea>
+				</div>
+			</div>
+
 			<div class="form-group row">
 				<div class="col-sm-2">
 					<input type="submit" value="Submit" class="btn btn-success">
