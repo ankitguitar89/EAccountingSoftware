@@ -79,13 +79,13 @@ tr:hover {
 	<%@include file="LeftNavMenu.html"%>
 	
 	<div class="item-page">
-	<h4>All Contacts</h4>
+	<h4>All Clients</h4>
 
 	
 		<input type="text" id="myInput" onkeyup="searchTable(2)"
 			placeholder="Search for company name.."> <a
-			href="AddNewContact.jsp"><input type="button"
-			id="addNewContactBtn" value="Add New Contact" class="btn btn-success">
+			href="AddNewClient.jsp"><input type="button"
+			id="addNewContactBtn" value="Add New Client" class="btn btn-success">
 		</a>
 
 
@@ -101,7 +101,7 @@ tr:hover {
 							</div>
 						</th>
 						<th>CONTACT PERSON</th>
-						<th>COMPANY NAME</th>
+						<th>CLIENT NAME</th>
 						<th>EMAIL</th>
 						<th>PRIMARY PHONE#</th>
 						<th>ALTERNATE PHONE#</th>

@@ -22,7 +22,7 @@ form {
 <body>
 	<%@include file="LeftNavMenu.html"%>
 	<div class="item-page">
-		<h4>Add New Contact</h4>
+		<h4>Add New Client</h4>
 		<hr style="" />
 		<form method="post" action="processContact.jsp">
 

@@ -24,24 +24,23 @@ form {
 	<div class="item-page">
 		<h4>Add New Staff</h4>
 		<hr style="" />
-		<form method="post" action="addStaff">
+		<form method="post" action="">
 
 			<div class="form-group row">
-				<label for="firstName" class="col-sm-1 col-form-label">First
-					Name</label>
+				<label for="firstName" class="col-sm-1 col-form-label">Customer Name</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="firstName">
 				</div>
 			</div>
+			
 			<div class="form-group row">
-				<label for="lastName" class="col-sm-1 col-form-label">Last
-					Name</label>
+				<label for="lastName" class="col-sm-1 col-form-label">Invoice#</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="lastName">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="Gender" class="col-sm-1 col-form-label">Gender</label>
+				<label for="Gender" class="col-sm-1 col-form-label">Order Number</label>
 				<div class="col-sm-2">
 					<select class="form-control" name="gender">
 						<option value="male">MALE</option>
@@ -51,55 +50,45 @@ form {
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="dob" class="col-sm-1 col-form-label">Birth Date</label>
+				<label for="dob" class="col-sm-1 col-form-label">Invoice Date</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="dob">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="primaryPhone" class="col-sm-1 col-form-label">Primary
-					Phone#</label>
+				<label for="primaryPhone" class="col-sm-1 col-form-label">Terms</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="primaryPhone">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="alternatePhone" class="col-sm-1 col-form-label">Alternate
-					Phone#</label>
+				<label for="alternatePhone" class="col-sm-1 col-form-label">Due Date</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="alternatePhone">
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="email" class="col-sm-1 col-form-label">Email</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="email">
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label for="joiningDate" class="col-sm-1 col-form-label">Joining
-					Date</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="joiningDate">
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label for="address" class="col-sm-1 col-form-label">Address</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="address">
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<div class="col-sm-2">
-					<input type="submit" value="Submit" class="btn btn-primary">
-										
-					<a href="Staff.jsp"><input type="button" value="Cancel"
-						class="btn btn-primary"></a>
-				</div>
-			</div>
+			
+			<table>
+			<tbody class="table">
+			
+			<thead >
+			<tr>
+			<th></th>
+			<th>Item Details</th>
+			<th>Quantity</th>
+			<th>Rate</th>
+			<th>Discount</th>
+			<th>Tax</th>
+			<th>Amount</th>
+			
+			</tr>
+			</thead>
+			</tbody>
+			</table>
+			
+			Total
+			Comment
+			Terms & Conditions
 		</form>
 	</div>
 </body>
