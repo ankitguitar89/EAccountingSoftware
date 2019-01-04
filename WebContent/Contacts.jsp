@@ -72,28 +72,8 @@ tr:hover {
 	background-color: #f5f5f5;
 }
 </style>
-<script>
-	function myFunction() {
-		// Declare variables 
-		var input, filter, table, tr, td, i;
-		input = document.getElementById("myInput");
-		filter = input.value.toUpperCase();
-		table = document.getElementById("myTable");
-		tr = table.getElementsByTagName("tr");
+<script src="js/findandsort.js"></script>
 
-		// Loop through all table rows, and hide those who don't match the search query
-		for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName("td")[2];
-			if (td) {
-				if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-					tr[i].style.display = "";
-				} else {
-					tr[i].style.display = "none";
-				}
-			}
-		}
-	}
-</script>
 </head>
 <body>
 	<%@include file="LeftNavMenu.html"%>
@@ -102,7 +82,7 @@ tr:hover {
 	<h4>All Contacts</h4>
 
 	
-		<input type="text" id="myInput" onkeyup="myFunction()"
+		<input type="text" id="myInput" onkeyup="searchTable(2)"
 			placeholder="Search for company name.."> <a
 			href="AddNewContact.jsp"><input type="button"
 			id="addNewContactBtn" value="Add New Contact" class="btn btn-success">
