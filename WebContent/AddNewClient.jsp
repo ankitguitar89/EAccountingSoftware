@@ -92,7 +92,7 @@ form {
 			<div class="form-group row">
 				<div class="col-sm-2">
 					<input type="submit" value="Submit" class="btn btn-success">
-					<a href="Contacts.jsp"><input type="button" value="Cancel"
+					<a href="Clients.jsp"><input type="button" value="Cancel"
 						class="btn"></a>
 				</div>
 			</div>

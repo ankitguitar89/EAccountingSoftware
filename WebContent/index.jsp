@@ -31,15 +31,19 @@
 </style>
 <body>
 
-
+<h3>Login</h3>
 	<form name="myForm" action="Company.jsp"
 onsubmit="return validateForm()" method="post">
-		<h3>Login</h3>
-	<p id="validation" style="color: white"></p>
-	<input type="text" id="uname" placeholder="Enter Username">
-	<br>
-	<input type="password" id="password" placeholder="Enter Password">
-	<br>
+		
+		<div class="input-group col-sm-2">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input id="uname" type="text" class="form-control" name="uname" placeholder="Username">
+  </div>
+  <div class="input-group col-sm-2">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+		<br>
 	<input type="button" id="resetBtn" value="Reset" onclick="reset()">
 	<input type="submit" id="loginBtn" value="Login">
 	</form>

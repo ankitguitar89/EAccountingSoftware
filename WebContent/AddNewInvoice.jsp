@@ -22,7 +22,7 @@ form {
 <body>
 	<%@include file="LeftNavMenu.html"%>
 	<div class="item-page">
-		<h4>Add New Staff</h4>
+		<h4>Add New Invoice</h4>
 		<hr style="" />
 		<form method="post" action="">
 
@@ -54,28 +54,29 @@ form {
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="dob">
 				</div>
-			</div>
-			<div class="form-group row">
+			
+			
 				<label for="primaryPhone" class="col-sm-1 col-form-label">Terms</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="primaryPhone">
 				</div>
-			</div>
-			<div class="form-group row">
+			
+			
 				<label for="alternatePhone" class="col-sm-1 col-form-label">Due Date</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="alternatePhone">
 				</div>
-			</div>
+				</div>
 			
-			<table>
-			<tbody class="table">
 			
-			<thead >
+			<table class="table">
+			
+			<thead class="tableHeader">
 			<tr>
 			<th></th>
 			<th>Item Details</th>
 			<th>Quantity</th>
+			<th>Unit</th>
 			<th>Rate</th>
 			<th>Discount</th>
 			<th>Tax</th>
@@ -83,6 +84,7 @@ form {
 			
 			</tr>
 			</thead>
+			<tbody >
 			</tbody>
 			</table>
 			

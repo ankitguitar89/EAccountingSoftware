@@ -107,6 +107,7 @@ tr:hover {
 						<th>ALTERNATE PHONE#</th>
 						<th>ADDRESS</th>
 						<th>PAYMENT TERMS</th>
+						<th>RECEIVABLES</th>
 					</tr>
 				</thead>
 				<tbody>

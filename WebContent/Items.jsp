@@ -99,8 +99,9 @@ tr:hover {
 						<th>PRODUCT CODE</th>
 						<th style="cursor: pointer;" onclick="sortTable(1)">COMPANY</th>
 						<th style="cursor: pointer;" onclick="sortTable(2)">BRAND</th>
-						<th style="cursor: pointer;" onclick="sortTable(3)">CATEGORY</th>
-						<th style="cursor: pointer;" onclick="sortTable(4)">SHAPE</th>
+						<th style="cursor: pointer;" onclick="sortTable(3)">GROUP</th>
+						<th style="cursor: pointer;" onclick="sortTable(4)">CATEGORY</th>
+						<th style="cursor: pointer;" onclick="sortTable(5)">SHAPE</th>
 						<th>ALIAS NAME</th>
 						<th>SIZE</th>
 						<th>COLOR</th>
