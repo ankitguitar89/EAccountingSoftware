@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+
+<%@ page import="java.sql.*" %>
+<%ResultSet resultset =null;%>
+<%ResultSet resultset2 =null;%>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -53,7 +58,7 @@ text-align:right;
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#addTableLine").click(function(){
+        $(".add-row").click(function(){
             var alias = $("#alias").val();
          
             var mrp = $("#mrp").val();
@@ -111,6 +116,15 @@ text-align:right;
 					<input type="text" name="productCode" /> <i
 						class="fas fa-caret-down"></i>
 				</div>
+								<div class="col-sm-2">
+
+					<label for="barcode">BARCODE</label>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" name="barcode" /> <i
+						class="fas fa-caret-down"></i>
+				</div>
+				
 			</div>
 			<br>
 			<div class="row">
@@ -150,29 +164,68 @@ text-align:right;
 			<br>
 			<div class="row">
 				<div class="col-sm-2">
-					<label for="brand">Shape</label>
+					<label for="shape">Shape</label>
 				</div>
 
 				<div class="col-sm-4">
-					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
+					<input type="text" name="shape" /> <i class="fas fa-caret-down"></i>
+				</div>
+
+				<div class="col-sm-2">
+					<label for="hsn">HSN/SAC</label>
+				</div>
+
+				<div class="col-sm-4">
+					<input type="text" name="hsn" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
+<br>
+	<div class="row">
+				<div class="col-sm-2">
+					<label for="hsn">Conversion Unit:</label>
+				</div>
+
+				<div class="col-sm-4">
+					<input type="text" name="hsn" /> Pcs/Box
+				</div>
+			</div>
+
 			<br>
+			
+			
+			<%
+    try{
+//Class.forName("com.mysql.jdbc.Driver").newInstance();
+Connection connection = 
+         DriverManager.getConnection
+            ("jdbc:mysql://localhost/accounts?user=root&password=root");
+
+       Statement statement = connection.createStatement() ;
+       resultset =statement.executeQuery("select * from sizes") ;
+       resultset2 =statement.executeQuery("select * from color") ;
+
+%>
+			
+			
+			<div style="overflow-x:auto;">
 			<table id="customers" style="text-align: center;">
     		<thead >
       			<tr style="background-color:#f9f9f9; color:#777;">
       				<th style="text-align: center; width:200px;">Alias Name</th>
         			<th style="text-align: center; width:50px;">Size</th>
         			<th style="text-align: center;width:50px;">Color</th>
+        			<th style="text-align: center;width:50px;">LOCAL</th>
+        			<th style="text-align: center;width:50px;">CENTRAL</th>
+        			<th style="text-align: center;width:50px;">SGST (%)</th>
+        			<th style="text-align: center;width:50px;">CGST (%)</th>
+        			<th style="text-align: center;width:50px;">IGST (%)</th>
         			<th style="text-align: center;width:50px;">MRP</th>
         			<th style="text-align: center;width:50px;">Purchase Rate</th>
         			<th style="text-align: center;width:50px;">Purchase Discount</th>
+        			<th style="text-align: center;width:50px;">Cost/Box</th>
         			<th style="text-align: center;width:50px;">Retail Rate</th>
         			<th style="text-align: center;width:50px;">Distributor Rate</th>
         			<th style="text-align: center;width:50px;">Special Rate</th>
-        			<th style="text-align: center;width:50px;">SGST</th>
-        			<th style="text-align: center;width:50px;">CGST</th>
-        			<th style="text-align: center;width:50px;">IGST</th>
      		 </tr>
     	</thead>
     	<tbody>
@@ -180,23 +233,56 @@ text-align:right;
     		<td> <textarea rows="1" name="alias" id="alias" style="text-transform:uppercase; width:250px;"></textarea>
     		</td>
     		<td>
+    		<select>
+    		 <%  while(resultset.next()){ %>
+            <option><%= resultset.getString(1)%></option>
+        <% } %>
+    		</select>
     		</td>
-    		<td></td>
-    		<td><input type="text" id="mrp"/></td>
-    		<td><input type="text" id="purchaserate"/></td>
-    		<td><input type="text" id="purchasediscount"/></td>
-    		<td><input type="text" id="retailrate"/></td>
-    		<td><input type="text" id="distributorrate"/></td>
-    		<td><input type="text" id="specialrate"/></td>
+    		
+    		<td>
+    		    		<select>
+    		 <%  while(resultset2.next()){ %>
+            <option><%= resultset2.getString(1)%></option>
+        <% } %>
+    		</select>
+    		</td>
+    		
+    		
+    		<%
+//**Should I input the codes here?**
+        }
+        catch(Exception e)
+        {
+             out.println("wrong entry"+e);
+        }
+%>
+    		<td><select style="text-align: center;width:110px;"><option value="1">TAXABLE</option>
+    		<option value="2">NON TAXABLE</option>
+    		<option value="3">TAX EXEMPT</option>
+    		</select></td>
+    		<td><select style="text-align: center;width:110px;"><option value="1">TAXABLE</option>
+    		<option value="2">NON TAXABLE</option>
+    		<option value="3">TAX EXEMPT</option>
+    		</select></td>
     		<td><input type="text" id="sgst"/></td>
     		<td><input type="text" id="cgst"/></td>
     		<td><input type="text" id="igst"/></td>
+    		<td><input type="text" id="mrp"/></td>
+    		<td><input type="text" id="purchaserate"/></td>
+    		<td><input type="text" id="purchasediscount"/></td>
+    		<td><input type="text" id="costperbox"/></td>
+    		<td><input type="text" id="retailrate"/></td>
+    		<td><input type="text" id="distributorrate"/></td>
+    		<td><input type="text" id="specialrate"/></td>
+
     	
     	</tr>
     	
     	
     	</tbody>
    		</table>
+   		</div>
 			<div class="btn btn-link add-row" id="addTableLine">
 			<i class="fas fa-plus-circle"></i>
 			Add another line</div>
@@ -212,4 +298,5 @@ text-align:right;
 		</form>
 	</div>
 </body>
+
 </html>
