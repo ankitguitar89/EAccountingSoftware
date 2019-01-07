@@ -67,8 +67,8 @@ form {
 }
 
 #customers th {
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 	text-align: center;
 	background-color: #4CAF50;
 	color: white;
@@ -233,8 +233,8 @@ form {
 							<th style="text-align: center; width: 200px;">Alias Name</th>
 							<th style="text-align: center; width: 50px;">Size</th>
 							<th style="text-align: center; width: 50px;">Color</th>
-							<th style="text-align: center; width: 50px;">LOCAL</th>
-							<th style="text-align: center; width: 50px;">CENTRAL</th>
+							<th style="text-align: center; width: 50px;">Local</th>
+							<th style="text-align: center; width: 50px;">Central</th>
 							<th style="text-align: center; width: 50px;">SGST (%)</th>
 							<th style="text-align: center; width: 50px;">CGST (%)</th>
 							<th style="text-align: center; width: 50px;">IGST (%)</th>
