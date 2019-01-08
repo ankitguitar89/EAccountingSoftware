@@ -1,5 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%
+	String id = request.getParameter("userid");
+	String driver = "com.mysql.jdbc.Driver";
+	String connectionUrl = "jdbc:mysql://localhost:3306/";
+	String database = "accounts";
+	String userid = "root";
+	String password = "root";
+	try {
+		Class.forName(driver);
+	} catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet resultSet = null;
+	ResultSet resultSet2 = null;
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -105,7 +128,24 @@ form {
 					</thead>
 					<tbody>
 						<tr>
-							<td style="text-align: center; width: 200px;"><input
+							<td style="text-align: center; width: 200px;">
+							<select>
+							<%
+										resultSet = statement.executeQuery("select * from items");
+											while (resultSet2.next()) {
+									%>
+									<option><%=resultSet2.getString("colors")%></option>
+									<%
+										}
+									%>
+							</select>
+							<%
+								//**Should I input the codes here?**
+								} catch (Exception e) {
+									out.println("wrong entry" + e);
+								}
+							%>
+							<input
 								type="text" style="width: 95%;"/></td>
 							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>
 							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>

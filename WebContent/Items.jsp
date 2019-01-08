@@ -105,9 +105,7 @@ tr:hover {
 						<th>ALIAS NAME</th>
 						<th>SIZE</th>
 						<th>COLOR</th>
-						<th>CURRENT STOCK</th>
 						<th>MRP</th>
-						<th>RATE</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -127,16 +125,16 @@ tr:hover {
 									for="checkbox1"></label>
 							</div>
 						</td>
-						<td></td>
-						<td><%=resultSet.getString("name")%></td>
+						<td><%=resultSet.getString("productcode")%></td>
+						<td><%=resultSet.getString("company")%></td>
 						<td><%=resultSet.getString("brand")%></td>
-						<td><%=resultSet.getString("productcolor")%></td>
+						<td><%=resultSet.getString("pgroup")%></td>
+						<td><%=resultSet.getString("category")%></td>
+						<td><%=resultSet.getString("shape")%></td>
+						<td><%=resultSet.getString("alias")%></td>
 						<td><%=resultSet.getString("size")%></td>
-						<td><%=resultSet.getString("unit")%></td>
-						<td><%=resultSet.getString("rate")%></td>
-						<td><%=resultSet.getString("description")%></td>
-						<td></td>
-
+						<td><%=resultSet.getString("color")%></td>
+						<td><%=resultSet.getString("mrp")%></td>
 					</tr>
 					<%
 						}

@@ -74,62 +74,6 @@ form {
 	color: white;
 }
 </style>
-<script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$(".add-row")
-								.click(
-										function() {
-											var alias = $("#alias").val();
-
-											var mrp = $("#mrp").val();
-											var purchaserate = $(
-													"#purchaserate").val();
-											var purchasediscount = $(
-													"#purchasediscount").val();
-											var retailrate = $("#retailrate")
-													.val();
-											var distributorrate = $(
-													"#distributorrate").val();
-											var specialrate = $("#specialrate")
-													.val();
-											var sgst = $("#sgst").val();
-											var cgst = $("#cgst").val();
-											var igst = $("#igst").val();
-
-											var markup = "<tr><td> <textarea rows='1' name='alias' style='text-transform:uppercase; width:250px;' value='"+alias+"'></textarea>"
-													+ "</td>"
-													+ "<td>"
-													+ "</td>"
-													+ "<td></td>"
-													+ "<td><input type='text' value='"+mrp+"' /></td>"
-													+ "<td><input type='text' value='"+purchaserate+"' /></td>"
-													+ "<td><input type='text' value='"+purchasediscount+"' /></td>"
-													+ "<td><input type='text' value='"+retailrate+"' /></td>"
-													+ "<td><input type='text' value='"+distributorrate+"' /></td>"
-													+ "<td><input type='text' value='"+specialrate+"' /></td>"
-													+ "<td><input type='text' value='"+sgst+"' /></td>"
-													+ "<td><input type='text' value='"+cgst+"' /></td>"
-													+ "<td><input type='text' value='"+igst+"' /></td></tr>";
-
-											$("table tbody").append(markup);
-										});
-
-						// Find and remove selected table rows
-						$(".delete-row").click(
-								function() {
-									$("table tbody").find(
-											'input[name="record"]').each(
-											function() {
-												if ($(this).is(":checked")) {
-													$(this).parents("tr")
-															.remove();
-												}
-											});
-								});
-					});
-</script>
 </head>
 <body>
 	<%@include file="LeftNavMenu.html"%>
@@ -137,24 +81,16 @@ form {
 	<div class="item-page">
 		<h4>Add New Item</h4>
 		<hr style="" />
-		<form method="post" action="">
+		<form method="post" action="processItem.jsp">
 			<div class="row">
 				<div class="col-sm-2">
 
 					<label for="productCode">Product Code</label>
 				</div>
 				<div class="col-sm-4">
-					<input type="text" name="productCode" /> <i
+					<input type="text" name="productcode" /> <i
 						class="fas fa-caret-down"></i>
 				</div>
-				<div class="col-sm-2">
-
-					<label for="barcode">BARCODE</label>
-				</div>
-				<div class="col-sm-4">
-					<input type="text" name="barcode" /> <i class="fas fa-caret-down"></i>
-				</div>
-
 			</div>
 			<br>
 			<div class="row">
@@ -176,11 +112,11 @@ form {
 			<br>
 			<div class="row">
 				<div class="col-sm-2">
-					<label for="group">Group</label>
+					<label for="pgroup">Group</label>
 				</div>
 
 				<div class="col-sm-4">
-					<input type="text" name="group" /> <i class="fas fa-caret-down"></i>
+					<input type="text" name="pgroup" /> <i class="fas fa-caret-down"></i>
 				</div>
 
 				<div class="col-sm-2">
@@ -188,7 +124,7 @@ form {
 				</div>
 
 				<div class="col-sm-4">
-					<input type="text" name="brand" /> <i class="fas fa-caret-down"></i>
+					<input type="text" name="category" /> <i class="fas fa-caret-down"></i>
 				</div>
 			</div>
 			<br>
@@ -212,24 +148,21 @@ form {
 			<br>
 			<div class="row">
 				<div class="col-sm-2">
-					<label for="hsn">Conversion Unit:</label>
+					<label for="conversionunit">Conversion Unit:</label>
 				</div>
 
 				<div class="col-sm-4">
-					<input type="text" name="hsn" /> Pcs/Box
+					<input type="text" name="conversionunit" /> Pcs/Box
 				</div>
 			</div>
 
 			<br>
 
-
-
-
 			<div style="overflow-x: auto;">
 				<table id="customers" style="text-align: center;">
 					<thead>
 						<tr style="background-color: #f9f9f9; color: #777;">
-						<th></th>
+							<th></th>
 							<th style="text-align: center; width: 200px;">Alias Name</th>
 							<th style="text-align: center; width: 50px;">Size</th>
 							<th style="text-align: center; width: 50px;">Color</th>
@@ -247,13 +180,13 @@ form {
 							<th style="text-align: center; width: 50px;">Distributor
 								Rate</th>
 							<th style="text-align: center; width: 50px;">Special Rate</th>
+							<th style="text-align: center; width: 50px;">Barcode</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-						<td>
-						
-						<i class="fa fa-remove" style="font-size:18px;color:red; padding:2px"></i></td>
+							<td><i class="fa fa-remove"
+								style="font-size: 18px; color: red; padding: 2px"></i></td>
 							<td><textarea rows="1" name="alias" id="alias"
 									style="text-transform: uppercase; width: 250px;"></textarea></td>
 
@@ -269,7 +202,7 @@ form {
 									System.out.println(resultSet2);
 							%>
 
-							<td><select>
+							<td><select name="size">
 									<option>SELECT</option>
 									<%
 										while (resultSet.next()) {
@@ -281,7 +214,7 @@ form {
 									%>
 							</select></td>
 
-							<td><select>
+							<td><select name="color">
 									<option>ANY</option>
 									<%
 										resultSet2 = statement.executeQuery("select * from color");
@@ -300,27 +233,29 @@ form {
 									out.println("wrong entry" + e);
 								}
 							%>
-							<td><select style="text-align: center; width: 110px;"><option
+							<td><select name="local"
+								style="text-align: center; width: 110px;"><option
 										value="1">TAXABLE</option>
 									<option value="2">NON TAXABLE</option>
 									<option value="3">TAX EXEMPT</option>
 							</select></td>
-							<td><select style="text-align: center; width: 110px;"><option
+							<td><select name="central"
+								style="text-align: center; width: 110px;"><option
 										value="1">TAXABLE</option>
 									<option value="2">NON TAXABLE</option>
 									<option value="3">TAX EXEMPT</option>
 							</select></td>
-							<td><input type="text" id="sgst" /></td>
-							<td><input type="text" id="cgst" /></td>
-							<td><input type="text" id="igst" /></td>
-							<td><input type="text" id="mrp" /></td>
-							<td><input type="text" id="purchaserate" /></td>
-							<td><input type="text" id="purchasediscount" /></td>
-							<td><input type="text" id="costperbox" /></td>
-							<td><input type="text" id="retailrate" /></td>
-							<td><input type="text" id="distributorrate" /></td>
-							<td><input type="text" id="specialrate" /></td>
-
+							<td><input type="text" name="sgst" /></td>
+							<td><input type="text" name="cgst" /></td>
+							<td><input type="text" name="igst" /></td>
+							<td><input type="text" name="mrp" /></td>
+							<td><input type="text" name="purchaserate" /></td>
+							<td><input type="text" name="purchasediscount" /></td>
+							<td><input type="text" name="costperbox" /></td>
+							<td><input type="text" name="retailrate" /></td>
+							<td><input type="text" name="distributorrate" /></td>
+							<td><input type="text" name="specialrate" /></td>
+							<td><input type="text" name="barcode" /></td>
 
 						</tr>
 
@@ -328,14 +263,61 @@ form {
 					</tbody>
 				</table>
 			</div>
-			<div class="btn btn-link add-row" id="addTableLine">
+			<div onclick="insRow()" class="btn btn-link add-row"
+				id="addTableLine">
 				<i class="fas fa-plus-circle"></i> Add another line
 			</div>
 
+			<script>
+				function addRow() {
+
+					var table = document.getElementById("customers");
+					var counter = table.rows.length;
+					var row = table.insertRow(1);
+					var cell1 = row.insertCell(0);
+					var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+					var cell4 = row.insertCell(3);
+					var cell5 = row.insertCell(4);
+					var cell6 = row.insertCell(5);
+					var cell7 = row.insertCell(6);
+					var cell8 = row.insertCell(7);
+					var cell9 = row.insertCell(8);
+					var cell10 = row.insertCell(9);
+					var cell11 = row.insertCell(10);
+					var cell12 = row.insertCell(11);
+					var cell13 = row.insertCell(12);
+					var cell14 = row.insertCell(13);
+					var cell15 = row.insertCell(14);
+					var cell16 = row.insertCell(15);
+					var cell17 = row.insertCell(16);
+
+				}
+
+				function deleteRow(row) {
+					var i = row.parentNode.parentNode.rowIndex;
+					document.getElementById('customers').deleteRow(i);
+				}
+
+				function insRow() {
+					var x = document.getElementById('customers');
+					var new_row = x.rows[1].cloneNode(true);
+					var len = x.rows.length;
+					new_row.cells[0].innerHTML = len;
+
+					var inp1 = new_row.cells[1].getElementsByTagName('input')[2];
+					inp1.id += len;
+					inp1.value = '';
+					var inp2 = new_row.cells[2].getElementsByTagName('input')[2];
+					inp2.id += len;
+					inp2.value = '';
+					x.appendChild(new_row);
+				}
+			</script>
 			<br> <br>
 			<div>
-				<button type="button" class="btn btn-success">Save</button>
-				<a href="Items.jsp">
+				<input type="submit" value="Save" class="btn btn-primary"> <a
+					href="Items.jsp">
 					<button type="button" class="btn">Cancel</button>
 				</a>
 			</div>
