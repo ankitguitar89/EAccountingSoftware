@@ -24,7 +24,7 @@ form {
 	<div class="item-page">
 		<h4>Add New Client</h4>
 		<hr style="" />
-		<form method="post" action="processContact.jsp">
+		<form method="post" action="processClient.jsp">
 
 			<div class="form-group row">
 				<label for="firstName" class="col-sm-2 col-form-label">Primary

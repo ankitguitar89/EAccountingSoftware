@@ -171,15 +171,15 @@ form {
 							<th style="text-align: center; width: 50px;">SGST (%)</th>
 							<th style="text-align: center; width: 50px;">CGST (%)</th>
 							<th style="text-align: center; width: 50px;">IGST (%)</th>
-							<th style="text-align: center; width: 50px;">MRP</th>
-							<th style="text-align: center; width: 50px;">Purchase Rate</th>
+							<th style="text-align: center; width: 50px;">MRP/Box</th>
+							<th style="text-align: center; width: 50px;">Purchase Rate/Box</th>
 							<th style="text-align: center; width: 50px;">Purchase
-								Discount</th>
+								Discount (%)</th>
 							<th style="text-align: center; width: 50px;">Cost/Box</th>
-							<th style="text-align: center; width: 50px;">Retail Rate</th>
+							<th style="text-align: center; width: 50px;">Retail Rate/Box</th>
 							<th style="text-align: center; width: 50px;">Distributor
-								Rate</th>
-							<th style="text-align: center; width: 50px;">Special Rate</th>
+								Rate/Box</th>
+							<th style="text-align: center; width: 50px;">Special Rate/Box</th>
 							<th style="text-align: center; width: 50px;">Barcode</th>
 						</tr>
 					</thead>

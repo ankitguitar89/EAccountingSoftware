@@ -80,39 +80,42 @@ form {
 	<div class="item-page">
 		<h4>Add New Purchase</h4>
 		<hr style="" />
-		<form method="post" action="">
+		<form method="post" action="processPurchase.jsp">
 
 			<div class="row">
-				<label for="firstName" class="col-sm-1 col-form-label">Name</label>
+				<label for="name" class="col-sm-1 col-form-label">Name</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="firstName">
+					<input type="text" class="form-control" name="name">
 				</div>
-				<label for="firstName" class="col-sm-1 col-form-label"
+				<label for="billdate" class="col-sm-1 col-form-label"
 					style="text-align: right;">Bill Date</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" name="billdate">
 				</div>
 			</div>
 			<br>
 			<div class="row">
-				<label for="lastName" class="col-sm-1 col-form-label">Entry
+				<label for="entrynum" class="col-sm-1 col-form-label">Entry
 					No</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="lastName">
+					<input type="text" class="form-control" name="entrynum">
 				</div>
-				<label for="lastName" class="col-sm-1 col-form-label">Party
+				<label for="partynum" class="col-sm-1 col-form-label">Party
 					No</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="lastName">
+					<input type="text" class="form-control" name="partynum">
 				</div>
-				<label for="lastName" class="col-sm-1 col-form-label">Type</label>
+				<label for="type" class="col-sm-1 col-form-label">Type</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="lastName">
+				<select class="form-control" name="type">
+					<option>LOCAL</option>
+					<option>CENTRAL</option>
+				</select>
 				</div>
 			</div>
 			<br>
 
-			<div style="overflow-x: auto;">
+			<div style="overflow-x: auto; font-size:small;">
 				<table id="customers" style="text-align: center;">
 					<thead>
 						<tr style="background-color: #f9f9f9; color: #777;">
@@ -129,31 +132,35 @@ form {
 					<tbody>
 						<tr>
 							<td style="text-align: center; width: 200px;">
-							<select>
+							<select name="productname">
 							<%
+							try {
+
+								connection = DriverManager.getConnection(connectionUrl + database, userid, password);
+
+								statement = connection.createStatement();
+
 										resultSet = statement.executeQuery("select * from items");
 											while (resultSet2.next()) {
 									%>
-									<option><%=resultSet2.getString("colors")%></option>
+									<option><%=resultSet2.getString("alias")%></option>
 									<%
 										}
 									%>
-							</select>
+							</select></td>
 							<%
 								//**Should I input the codes here?**
 								} catch (Exception e) {
 									out.println("wrong entry" + e);
 								}
 							%>
-							<input
-								type="text" style="width: 95%;"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;"/></td>
+							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="mrp"/></td>
+							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="box"/></td>
+							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="pcs"/></td>
+							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="purchaserate"/></td>
+							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="disc1"/></td>
+							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="disc2"/></td>
+							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="amount"/></td>
 						</tr>
 					</tbody>
 				</table>
@@ -166,22 +173,24 @@ form {
 			
 			<br>
 			<br>
-			<div>
-				<label for="primaryPhone" class="col-sm-1 col-form-label">Terms</label>
+			<div class="row">
+				<label for="terms" class="col-sm-1 col-form-label">Terms</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="primaryPhone">
+					<input type="text" class="form-control" name="terms">
 				</div>
 
 
-				<label for="alternatePhone" class="col-sm-1 col-form-label">Due
+				<label for="duedate" class="col-sm-1 col-form-label">Due
 					Date</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="alternatePhone">
+					<input type="text" class="form-control" name="duedate">
 				</div>
 			</div>
-			<br><br>
+			<br>
+			<br>
+	
 			<div>
-				<button type="button" class="btn btn-success">Save</button>
+				<input type="button" class="btn btn-success" value="Save">
 				<a href="Purchase.jsp">
 					<button type="button" class="btn">Cancel</button>
 				</a>
