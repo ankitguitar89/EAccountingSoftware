@@ -71,6 +71,7 @@ form {
 	text-align: center;
 	background-color: #4CAF50;
 	color: white;
+	
 }
 </style>
 
@@ -81,49 +82,29 @@ form {
 		<h4>Add New Purchase</h4>
 		<hr style="" />
 		<form method="post" action="processPurchase.jsp">
-
-			<div class="row">
-				<label for="name" class="col-sm-1 col-form-label">Name</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="name">
-				</div>
-				<label for="billdate" class="col-sm-1 col-form-label"
-					style="text-align: right;">Bill Date</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="billdate">
-				</div>
-			</div>
-			<br>
-			<div class="row">
-				<label for="entrynum" class="col-sm-1 col-form-label">Entry
-					No</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="entrynum">
-				</div>
-				<label for="partynum" class="col-sm-1 col-form-label">Party
-					No</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="partynum">
-				</div>
-				<label for="type" class="col-sm-1 col-form-label">Type</label>
-				<div class="col-sm-2">
-				<select class="form-control" name="type">
-					<option>LOCAL</option>
-					<option>CENTRAL</option>
+			
+				Name: <input type="text" name="name" style="width:50%"> 
+			<br><br>	Bill Date: <input type="date" style="text-align:center;" name="billdate">
+			
+				Entry No: <input type="text" name="entrynum">
+				Party No: <input type="text" name="partynum">
+				Type: <select name="type">
+					<option>Local</option>
+					<option>Central</option>
 				</select>
-				</div>
-			</div>
+			<br>
 			<br>
 
-			<div style="overflow-x: auto; font-size:small;">
+			<div style="overflow-x: auto; font-size: small;">
 				<table id="customers" style="text-align: center;">
 					<thead>
 						<tr style="background-color: #f9f9f9; color: #777;">
-							<th style="text-align: center; width: 200px;">Product</th>
+							<th style="text-align: center; width: 140px;">Product</th>
 							<th style="text-align: center; width: 50px;">MRP</th>
 							<th style="text-align: center; width: 50px;">Box</th>
 							<th style="text-align: center; width: 50px;">Pcs</th>
-							<th style="text-align: center; width: 50px;">Purchase Rate/Box</th>
+							<th style="text-align: center; width: 50px;">Purchase
+								Rate/Box</th>
 							<th style="text-align: center; width: 50px;">Discount 1 (%)</th>
 							<th style="text-align: center; width: 50px;">Discount 2 (%)</th>
 							<th style="text-align: center; width: 50px;">Amount</th>
@@ -131,22 +112,22 @@ form {
 					</thead>
 					<tbody>
 						<tr>
-							<td style="text-align: center; width: 200px;">
-							<select name="productname">
-							<%
-							try {
-
-								connection = DriverManager.getConnection(connectionUrl + database, userid, password);
-
-								statement = connection.createStatement();
-
-										resultSet = statement.executeQuery("select * from items");
-											while (resultSet2.next()) {
-									%>
-									<option><%=resultSet2.getString("alias")%></option>
 									<%
-										}
+										try {
+
+											connection = DriverManager.getConnection(connectionUrl + database, userid, password);
+											statement = connection.createStatement();
+											resultSet = statement.executeQuery("select alias from items;");
 									%>
+
+							<td style="text-align: center; ">
+							<select
+								name="productname" style="width: 95%;">
+									<option></option>
+									<% 	while (resultSet.next()) {%>
+	
+									<option><%=resultSet.getString("alias")%></option>
+									<% } %>
 							</select></td>
 							<%
 								//**Should I input the codes here?**
@@ -154,44 +135,97 @@ form {
 									out.println("wrong entry" + e);
 								}
 							%>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="mrp"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="box"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="pcs"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="purchaserate"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="disc1"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="disc2"/></td>
-							<td style="text-align: center; width: 50px;"><input type="text" style="width: 95%;" name="amount"/></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="mrp" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="box" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="pcs" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="purchaserate" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="disc1" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="disc2" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="amount" /></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			
-			
+
+
 			<div class="btn btn-link add-row" id="addTableLine">
 				<i class="fas fa-plus-circle"></i> Add another line
 			</div>
-			
-			<br>
-			<br>
-			<div class="row">
-				<label for="terms" class="col-sm-1 col-form-label">Terms</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="terms">
+
+			<br> <br>
+			<div>
+				<div
+					style="height: 200px; width: 25%; border: solid 1px; margin: 5px; padding: 10px; display: inline-block; vertical-align: top;">
+					Due Date: <input type="date" name="duedate"
+						style="float: right; width: 60%; text-align: center;" /><br>
+					<br> Remarks:
+					<textarea name="remarks"
+						style="float: right; width: 60%; height: 60%;"></textarea>
+				</div>
+				<div
+					style="margin-left: 30%; height: 200px; width: 30%; border: solid 1px; float: center; margin: 5px; padding: 10px; display: inline-block; vertical-align: top;">
+					Payment Mode: <select name="paymentmode"
+						style="float: right; width: 40%;"><option></option>
+						<option>Cheque</option>
+						<option>Online Transfer</option>
+						<option>Cash</option></select> <br> <br> Amount Paid: <input
+						type="text" name="amountpaid" style="float: right; width: 40%;" /><br>
+					<br> Transaction Date: <input type="date"
+						name="transactiondate"
+						style="float: right; width: 40%; text-align: center;" /><br>
+					<br> Transaction Reference: <input type="text"
+						name="reference" style="float: right; width: 40%;" />
+
 				</div>
 
-
-				<label for="duedate" class="col-sm-1 col-form-label">Due
-					Date</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="duedate">
+				<div
+					style="margin-left: 50%; height: 260px; width: 40%; border: solid 1px; float: right; margin: 5px; padding: 10px; display: inline-block; vertical-align: top;">
+					<p style="line-height: 1.2;">
+						Total before Discount<input type="text"
+							style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						Discount <input type="text" style="width: 15%; margin-left: 25%;">
+						% <input type="text" style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						Shipping Charges <input type="text"
+							style="float: right; width: 30%;">
+					</p>
+					<p style="line-height: 1.2;">
+						SGST <input type="text" style="width: 15%; margin-left: 28%;">
+						% <input type="text" style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						CGST <input type="text" style="width: 15%; margin-left: 28%;">
+						% <input type="text" style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						IGST <input type="text" style="width: 15%; margin-left: 29%;">
+						% <input type="text" style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
+					</p>
+					<p style="line-height: 1.5;">
+						Total Tax<input type="text" style="float: right; width: 30%; background-color:#f6f6f6;"
+							readonly>
+					</p>
+					<strong>Total Payment<input type="text" readonly
+						style="float: right; width: 30%; background-color:#f6f6f6;" ></strong>
 				</div>
 			</div>
-			<br>
-			<br>
-	
+
+
+			<br> <br>
+
 			<div>
-				<input type="button" class="btn btn-success" value="Save">
-				<a href="Purchase.jsp">
+				<input type="button" class="btn btn-success" value="Save"> <a
+					href="Purchase.jsp">
 					<button type="button" class="btn">Cancel</button>
 				</a>
 			</div>
