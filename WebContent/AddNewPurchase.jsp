@@ -71,7 +71,6 @@ form {
 	text-align: center;
 	background-color: #4CAF50;
 	color: white;
-	
 }
 </style>
 
@@ -81,19 +80,42 @@ form {
 	<div class="item-page">
 		<h4>Add New Purchase</h4>
 		<hr style="" />
-		<form method="post" action="processPurchase.jsp">
-			
-				Name: <input type="text" name="name" style="width:50%"> 
-			<br><br>	Bill Date: <input type="date" style="text-align:center;" name="billdate">
-			
-				Entry No: <input type="text" name="entrynum">
-				Party No: <input type="text" name="partynum">
-				Type: <select name="type">
-					<option>Local</option>
-					<option>Central</option>
-				</select>
+		<form action="processPurchase.jsp" method="post">
+
+			Company Name:
+			<%
+			try {
+
+				connection = DriverManager.getConnection(connectionUrl + database, userid, password);
+				statement = connection.createStatement();
+				resultSet = statement.executeQuery("select company from contact;");
+		%>
+
+			<select name="companyname" style="width: 60%;">
+				<option></option>
+				<%
+					while (resultSet.next()) {
+				%>
+
+				<option><%=resultSet.getString("company")%></option>
+				<%
+					}
+				%>
+			</select>
+			<%
+				//**Should I input the codes here?**
+				} catch (Exception e) {
+					out.println("wrong entry" + e);
+				}
+			%>
 			<br>
-			<br>
+			<br> Bill Date: <input type="date" style="text-align: center;"
+				name="billdate"> Entry No: <input type="text"
+				name="entrynum"> Party No: <input type="text"
+				name="partynum"> Type: <select name="type">
+				<option>Local</option>
+				<option>Central</option>
+			</select> <br> <br>
 
 			<div style="overflow-x: auto; font-size: small;">
 				<table id="customers" style="text-align: center;">
@@ -112,22 +134,25 @@ form {
 					</thead>
 					<tbody>
 						<tr>
-									<%
-										try {
+							<%
+								try {
 
-											connection = DriverManager.getConnection(connectionUrl + database, userid, password);
-											statement = connection.createStatement();
-											resultSet = statement.executeQuery("select alias from items;");
+									connection = DriverManager.getConnection(connectionUrl + database, userid, password);
+									statement = connection.createStatement();
+									resultSet = statement.executeQuery("select alias from items;");
+							%>
+
+							<td style="text-align: center;"><select name="productname"
+								style="width: 95%;">
+									<option></option>
+									<%
+										while (resultSet.next()) {
 									%>
 
-							<td style="text-align: center; ">
-							<select
-								name="productname" style="width: 95%;">
-									<option></option>
-									<% 	while (resultSet.next()) {%>
-	
 									<option><%=resultSet.getString("alias")%></option>
-									<% } %>
+									<%
+										}
+									%>
 							</select></td>
 							<%
 								//**Should I input the codes here?**
@@ -188,43 +213,57 @@ form {
 				<div
 					style="margin-left: 50%; height: 260px; width: 40%; border: solid 1px; float: right; margin: 5px; padding: 10px; display: inline-block; vertical-align: top;">
 					<p style="line-height: 1.2;">
-						Total before Discount<input type="text"
-							style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
+						Total before Discount<input type="text" name="totalbeforediscount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
 					</p>
 					<p style="line-height: 1.2;">
-						Discount <input type="text" style="width: 15%; margin-left: 25%;">
-						% <input type="text" style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
+						Discount <input type="text" name="discount"
+							style="width: 15%; margin-left: 25%;"> % <input
+							type="text" name="discountamount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
 					</p>
 					<p style="line-height: 1.2;">
-						Shipping Charges <input type="text"
+						Shipping Charges <input type="text" name="shippingcharges"
 							style="float: right; width: 30%;">
 					</p>
 					<p style="line-height: 1.2;">
-						SGST <input type="text" style="width: 15%; margin-left: 28%;">
-						% <input type="text" style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
-					</p>
-					<p style="line-height: 1.2;">
-						CGST <input type="text" style="width: 15%; margin-left: 28%;">
-						% <input type="text" style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
-					</p>
-					<p style="line-height: 1.2;">
-						IGST <input type="text" style="width: 15%; margin-left: 29%;">
-						% <input type="text" style="float: right; width: 30%; background-color:#f6f6f6;" readonly>
-					</p>
-					<p style="line-height: 1.5;">
-						Total Tax<input type="text" style="float: right; width: 30%; background-color:#f6f6f6;"
+						SGST <input type="text" name="ssgst"
+							style="width: 15%; margin-left: 28%;"> % <input
+							type="text" name="sgstamount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
 							readonly>
 					</p>
-					<strong>Total Payment<input type="text" readonly
-						style="float: right; width: 30%; background-color:#f6f6f6;" ></strong>
+					<p style="line-height: 1.2;">
+						CGST <input type="text" name="scgst"
+							style="width: 15%; margin-left: 28%;"> % <input
+							type="text" name="cgstamount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						IGST <input type="text" name="sigst"
+							style="width: 15%; margin-left: 29%;"> % <input
+							type="text" name="igstamount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<p style="line-height: 1.5;">
+						Total Tax<input type="text" name="totaltax"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<strong>Total Payment<input type="text"
+						name="totalpayment" readonly
+						style="float: right; width: 30%; background-color: #f6f6f6;"></strong>
 				</div>
 			</div>
-
 
 			<br> <br>
 
 			<div>
-				<input type="button" class="btn btn-success" value="Save"> <a
+				<input type="submit" class="btn btn-success" value="Save"> <a
 					href="Purchase.jsp">
 					<button type="button" class="btn">Cancel</button>
 				</a>

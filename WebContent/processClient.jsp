@@ -25,7 +25,7 @@
 		System.out.println(	"insert into contact (firstName,lastName,company,primaryPhone,alternatePhone,address,createdAt,email,paymentterms)values('" + firstName
 				+ "','" + lastName + "','" + company + "','" + primaryPhone + "','" + alternatePhone + "','"
 				+ address + "',"+"CURRENT_TIMESTAMP" + ",'"+ email + "','" +paymentTerms+"');");
-		RequestDispatcher rd=request.getRequestDispatcher("Contacts.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("Clients.jsp");
 		rd.forward(request,response);
 		
 	} catch (Exception e) {

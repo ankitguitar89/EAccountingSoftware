@@ -111,7 +111,7 @@ tr:hover {
 						try {
 							connection = DriverManager.getConnection(connectionUrl + database, userid, password);
 							statement = connection.createStatement();
-							String sql = "select * from items";
+							String sql = "select * from purchase";
 							resultSet = statement.executeQuery(sql);
 							while (resultSet.next()) {
 					%>
@@ -122,16 +122,14 @@ tr:hover {
 									for="checkbox1"></label>
 							</div>
 						</td>
-						<td></td>
+						<td><%=resultSet.getString("billdate")%></td>
 						<td><%=resultSet.getString("name")%></td>
-						<td><%=resultSet.getString("brand")%></td>
-						<td><%=resultSet.getString("productcolor")%></td>
-						<td><%=resultSet.getString("size")%></td>
-						<td><%=resultSet.getString("unit")%></td>
-						<td><%=resultSet.getString("rate")%></td>
-						<td><%=resultSet.getString("description")%></td>
+						<td><%=resultSet.getString("partynum")%></td>
+						<td><%=resultSet.getString("entrynum")%></td>
+						<td><%=resultSet.getString("totalpayment")%></td>
+						<td><%=resultSet.getString("amountpaid")%></td>
 						<td></td>
-
+						<td><%=resultSet.getString("duedate")%></td>
 					</tr>
 					<%
 						}
