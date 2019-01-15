@@ -81,8 +81,9 @@ tr:hover {
 		<h4>All Purchases</h4>
 
 		<input type="text" id="myInput" onkeyup="searchTable(2)"
-			placeholder="Search for purchase.."> <a href="AddNewPurchase.jsp"><input
-			type="button" id="addNewPurchaseBtn" value="Add New Purchase"
+			placeholder="Search for purchase.."> <a
+			href="AddNewPurchase.jsp"><input type="button"
+			id="addNewPurchaseBtn" value="Add New Purchase"
 			class="btn btn-success"> </a>
 		<div style="overflow-x: auto;">
 			<table class="table table-striped" id="myTable">
@@ -95,13 +96,16 @@ tr:hover {
 									for="checkbox1"></label>
 							</div>
 						</th>
+						<th style="cursor: pointer;" onclick="sortTable(0)">ID</th>
 						<th style="cursor: pointer;" onclick="sortTable(0)">BILL DATE</th>
 						<th style="cursor: pointer;" onclick="sortTable(1)">NAME</th>
 						<th style="cursor: pointer;" onclick="sortTable(2)">PARTY NO</th>
 						<th style="cursor: pointer;" onclick="sortTable(3)">ENTRY NO</th>
-						<th style="cursor: pointer;" onclick="sortTable(4)">BILL TOTAL</th>
+						<th style="cursor: pointer;" onclick="sortTable(4)">BILL
+							TOTAL</th>
 						<th style="cursor: pointer;" onclick="sortTable(5)">CASH PAID</th>
-						<th style="cursor: pointer;" onclick="sortTable(6)">BALANCE DUE</th>
+						<th style="cursor: pointer;" onclick="sortTable(6)">BALANCE
+							DUE</th>
 						<th style="cursor: pointer;" onclick="sortTable(7)">DUE DATE</th>
 					</tr>
 				</thead>
@@ -113,7 +117,9 @@ tr:hover {
 							statement = connection.createStatement();
 							String sql = "select * from purchase";
 							resultSet = statement.executeQuery(sql);
+							int iCount = 0;
 							while (resultSet.next()) {
+								iCount = iCount + 1;
 					%>
 					<tr>
 						<td>
@@ -121,6 +127,14 @@ tr:hover {
 								<input type="checkbox" id="checkbox1"> <label
 									for="checkbox1"></label>
 							</div>
+						</td>
+						<td>
+							<form name='submitForm' method="POST"
+								action="ViewPurchase.jsp">
+								<input type="hidden" name="id_form" value=<%=resultSet.getString("id")%>>
+								<a href="javascript:document.submitForm.submit()">
+									<%=resultSet.getString("id")%></a>
+							</form>
 						</td>
 						<td><%=resultSet.getString("billdate")%></td>
 						<td><%=resultSet.getString("name")%></td>
