@@ -27,7 +27,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Purchase</title>
+<title>Add New Purchase</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -78,9 +78,9 @@ form {
 <body>
 	<%@include file="LeftNavMenu.html"%>
 	<div class="item-page">
-		<h4>View Purchase</h4>
+		<h4>Add New Purchase</h4>
 		<hr style="" />
-		<form action="updatePurchase.jsp" method="post">
+		<form action="processPurchase.jsp" method="post">
 
 			Company Name:
 			<%
@@ -88,9 +88,6 @@ form {
 
 				connection = DriverManager.getConnection(connectionUrl + database, userid, password);
 				statement = connection.createStatement();
-				String id_Form=request.getParameter("id_form");
-				
-				resultSet2 = statement.executeQuery("select * from purchase where id='"+id_Form+"';");
 				resultSet = statement.executeQuery("select company from contact;");
 		%>
 

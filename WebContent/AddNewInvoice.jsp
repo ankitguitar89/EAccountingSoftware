@@ -1,5 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+
+
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%
+	String id = request.getParameter("userid");
+	String driver = "com.mysql.jdbc.Driver";
+	String connectionUrl = "jdbc:mysql://localhost:3306/";
+	String database = "accounts";
+	String userid = "root";
+	String password = "root";
+	try {
+		Class.forName(driver);
+	} catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet resultSet = null;
+	ResultSet resultSet2 = null;
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,7 +30,10 @@
 <title>Add New Invoice</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+	
+	
 <style>
 .item-page {
 	margin-left: 160px;
@@ -16,81 +42,259 @@
 form {
 	margin-top: 30px;
 }
-</style>
 
+#customers {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#customers td, #customers th {
+	border: 1px solid #ddd;
+	padding-top: 5px;
+}
+
+#customers td {
+	padding-bottom: 10px;
+}
+
+#customers td input {
+	width: 70px;
+	text-align: right;
+}
+
+#customers tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#customers th {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
+<script>
+
+$(document).ready( function() {
+	document.getElementById("datePicker").defaultValue = '12-10-2018';
+    var now = new Date();
+    var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+    $('#datePicker').val(today);
+});
+function getDate(){
+    var today = new Date();
+
+document.getElementById("datePicker").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
+
+
+}
+
+</script>
 </head>
 <body>
 	<%@include file="LeftNavMenu.html"%>
 	<div class="item-page">
 		<h4>Add New Invoice</h4>
 		<hr style="" />
-		<form method="post" action="">
+		<form action="processPurchase.jsp" method="post">
 
-			<div class="form-group row">
-				<label for="firstName" class="col-sm-1 col-form-label">Customer Name</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="firstName">
+			Company Name:
+			<%
+			try {
+
+				connection = DriverManager.getConnection(connectionUrl + database, userid, password);
+				statement = connection.createStatement();
+				resultSet = statement.executeQuery("select company from contact;");
+		%>
+
+			<select name="companyname" style="width: 60%;">
+				<option></option>
+				<%
+					while (resultSet.next()) {
+				%>
+
+				<option><%=resultSet.getString("company")%></option>
+				<%
+					}
+				%>
+			</select>
+			<%
+				//**Should I input the codes here?**
+				} catch (Exception e) {
+					out.println("wrong entry" + e);
+				}
+			%>
+			<br>
+			<br> Invoice Date: <input type="date" style="text-align: center;"
+				name="invoicedate" onload="getDate()" id="datePicker"> Order No: <input type="text"
+				name="ordernum"> 
+
+				
+				Type: <select name="type">
+				<option>Local</option>
+				<option>Central</option>
+			</select> 
+				Terms: <input type="text"
+				name="terms"> 
+				Due Date
+				<input type="date"
+				name="duedate" id="datePicker">
+			<br> <br>
+<script>
+document.getElementById("datePicker").defaultValue = '12-10-2018';
+</script>
+			<div style="overflow-x: auto; font-size: small;">
+				<table id="customers" style="text-align: center;">
+					<thead>
+						<tr style="background-color: #f9f9f9; color: #777;">
+							<th style="text-align: center; width: 140px;">Item Details</th>
+							<th style="text-align: center; width: 50px;">Quantity</th>
+							<th style="text-align: center; width: 50px;">Unit</th>
+							<th style="text-align: center; width: 50px;">Rate</th>
+							<th style="text-align: center; width: 50px;">Discount</th>
+							<th style="text-align: center; width: 50px;">Tax</th>
+							<th style="text-align: center; width: 50px;">Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<%
+								try {
+
+									connection = DriverManager.getConnection(connectionUrl + database, userid, password);
+									statement = connection.createStatement();
+									resultSet = statement.executeQuery("select alias from items;");
+							%>
+
+							<td style="text-align: center;"><select name="productname"
+								style="width: 95%;">
+									<option></option>
+									<%
+										while (resultSet.next()) {
+									%>
+
+									<option><%=resultSet.getString("alias")%></option>
+									<%
+										}
+									%>
+							</select></td>
+							<%
+								//**Should I input the codes here?**
+								} catch (Exception e) {
+									out.println("wrong entry" + e);
+								}
+							%>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="mrp" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="box" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="pcs" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="purchaserate" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="disc1" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="disc2" /></td>
+							<td style="text-align: center; width: 50px;"><input
+								type="text" style="width: 95%;" name="amount" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+			<div class="btn btn-link add-row" id="addTableLine">
+				<i class="fas fa-plus-circle"></i> Add another line
+			</div>
+
+			<br> <br>
+			<div>
+				<div
+					style="height: 200px; width: 25%; border: solid 1px; margin: 5px; padding: 10px; display: inline-block; vertical-align: top;">
+					Due Date: <input type="date" name="duedate"
+						style="float: right; width: 60%; text-align: center;" /><br>
+					<br> Remarks:
+					<textarea name="remarks"
+						style="float: right; width: 60%; height: 60%;"></textarea>
+				</div>
+				<div
+					style="margin-left: 30%; height: 200px; width: 30%; border: solid 1px; float: center; margin: 5px; padding: 10px; display: inline-block; vertical-align: top;">
+					Payment Mode: <select name="paymentmode"
+						style="float: right; width: 40%;"><option></option>
+						<option>Cheque</option>
+						<option>Online Transfer</option>
+						<option>Cash</option></select> <br> <br> Amount Paid: <input
+						type="text" name="amountpaid" style="float: right; width: 40%;" /><br>
+					<br> Transaction Date: <input type="date"
+						name="transactiondate"
+						style="float: right; width: 40%; text-align: center;" /><br>
+					<br> Transaction Reference: <input type="text"
+						name="reference" style="float: right; width: 40%;" />
+
+				</div>
+
+				<div
+					style="margin-left: 50%; height: 260px; width: 40%; border: solid 1px; float: right; margin: 5px; padding: 10px; display: inline-block; vertical-align: top;">
+					<p style="line-height: 1.2;">
+						Total before Discount<input type="text" name="totalbeforediscount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						Discount <input type="text" name="discount"
+							style="width: 15%; margin-left: 25%;"> % <input
+							type="text" name="discountamount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						Shipping Charges <input type="text" name="shippingcharges"
+							style="float: right; width: 30%;">
+					</p>
+					<p style="line-height: 1.2;">
+						SGST <input type="text" name="ssgst"
+							style="width: 15%; margin-left: 28%;"> % <input
+							type="text" name="sgstamount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						CGST <input type="text" name="scgst"
+							style="width: 15%; margin-left: 28%;"> % <input
+							type="text" name="cgstamount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<p style="line-height: 1.2;">
+						IGST <input type="text" name="sigst"
+							style="width: 15%; margin-left: 29%;"> % <input
+							type="text" name="igstamount"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<p style="line-height: 1.5;">
+						Total Tax<input type="text" name="totaltax"
+							style="float: right; width: 30%; background-color: #f6f6f6;"
+							readonly>
+					</p>
+					<strong>Total Payment<input type="text"
+						name="totalpayment" readonly
+						style="float: right; width: 30%; background-color: #f6f6f6;"></strong>
 				</div>
 			</div>
-			
-			<div class="form-group row">
-				<label for="lastName" class="col-sm-1 col-form-label">Invoice#</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="lastName">
-				</div>
+
+			<br> <br>
+
+			<div>
+				<input type="submit" class="btn btn-success" value="Save"> <a
+					href="Purchase.jsp">
+					<button type="button" class="btn">Cancel</button>
+				</a>
 			</div>
-			<div class="form-group row">
-				<label for="Gender" class="col-sm-1 col-form-label">Order Number</label>
-				<div class="col-sm-2">
-					<select class="form-control" name="gender">
-						<option value="male">MALE</option>
-						<option value="female">FEMALE</option>
-						<option value="na">NA</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="dob" class="col-sm-1 col-form-label">Invoice Date</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="dob">
-				</div>
-			
-			
-				<label for="primaryPhone" class="col-sm-1 col-form-label">Terms</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="primaryPhone">
-				</div>
-			
-			
-				<label for="alternatePhone" class="col-sm-1 col-form-label">Due Date</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="alternatePhone">
-				</div>
-				</div>
-			
-			
-			<table class="table">
-			
-			<thead class="tableHeader">
-			<tr>
-			<th></th>
-			<th>Item Details</th>
-			<th>Quantity</th>
-			<th>Unit</th>
-			<th>Rate</th>
-			<th>Discount</th>
-			<th>Tax</th>
-			<th>Amount</th>
-			
-			</tr>
-			</thead>
-			<tbody >
-			</tbody>
-			</table>
-			
-			Total
-			Comment
-			Terms & Conditions
 		</form>
 	</div>
 </body>

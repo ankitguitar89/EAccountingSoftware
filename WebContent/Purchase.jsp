@@ -129,11 +129,12 @@ tr:hover {
 							</div>
 						</td>
 						<td>
-							<form name='submitForm' method="POST"
-								action="ViewPurchase.jsp">
-								<input type="hidden" name="id_form" value=<%=resultSet.getString("id")%>>
 								<a href="javascript:document.submitForm.submit()">
 									<%=resultSet.getString("id")%></a>
+									<form name="submitForm" method="POST"
+								action="ViewPurchase.jsp">
+							
+							<input type="hidden" name="id_form" value=<%=resultSet.getString("id")%>>
 							</form>
 						</td>
 						<td><%=resultSet.getString("billdate")%></td>

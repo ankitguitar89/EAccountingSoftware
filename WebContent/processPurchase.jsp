@@ -42,14 +42,15 @@ String totaltax= request.getParameter("totaltax");
 		Connection conn = DriverManager.getConnection(connectionUrl + database, userid, password);
 		Statement st = conn.createStatement();
 		
-		st.executeUpdate("INSERT INTO purchase(id,name,billdate,entrynum,partynum,type,productname,mrp,box,pcs,purchaserate,disc1,disc2,amount,duedate,creationdate,"
+		st.executeUpdate("INSERT INTO purchase(name,billdate,entrynum,partynum,type,productname,mrp,box,pcs,purchaserate,disc1,disc2,amount,duedate,creationdate,"
 				+"remarks, paymentmode, amountpaid, transactiondate, reference, discount, shippingcharges, ssgst, scgst, sigst, totaltax)"
-				+"values('NULL','" +name+ "','" + billdate+ "','" + entrynum+ "','" + partynum+ "','" + type+ "','" + productname+ "','" + mrp+ "','" + box+ "','" +pcs+ "','"+purchaserate+ "','"+disc1+ "','"+disc2+ "','"+amount+ "','" +duedate+ "','" +"CURRENT_TIMESTAMP"
+				+"values('" +name+ "','" + billdate+ "','" + entrynum+ "','" + partynum+ "','" + type+ "','" + productname+ "','" + mrp+ "','" + box+ "','" +pcs+ "','"+purchaserate+ "','"+disc1+ "','"+disc2+ "','"+amount+ "','" +duedate+ "','" +"CURRENT_TIMESTAMP"
 				+"','" +remarks+ "','" +paymentmode+ "','" +amountpaid+ "','"+transactiondate+ "','" +reference+ "','"+discount+ "','" +shippingcharges
 				+ "','"+ssgst+ "','" +scgst+ "','" +sigst+ "','"+totaltax+ "');");
 		
 		RequestDispatcher rd=request.getRequestDispatcher("Purchase.jsp");
-		rd.forward(request,response);
+	
+
 		
 	} catch (Exception e) {
 		System.out.print(e);

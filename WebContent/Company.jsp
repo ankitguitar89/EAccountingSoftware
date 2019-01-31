@@ -7,7 +7,6 @@
 <title>Add Company</title>
 </head>
 <body>
-	<%@include  file="LeftNavMenu.html" %>
 	<h4>Add Company Details</h4>
 	<form action="">
 		<label for="cname">Company Name</label> <input type="text" id='cname'>

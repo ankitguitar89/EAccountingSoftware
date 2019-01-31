@@ -32,7 +32,7 @@
 <body>
 
 <h3>Login</h3>
-	<form name="myForm" action="Dashboard.jsp"
+	<form name="myForm" action="SelectCompany.jsp"
 onsubmit="return validateForm()" method="post">
 		
 		<div class="input-group col-sm-2">
